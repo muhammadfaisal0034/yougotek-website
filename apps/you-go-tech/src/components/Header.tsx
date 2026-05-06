@@ -80,7 +80,7 @@ export function Header() {
 
       {/* Mobile Menu */}
       <div
-        className={`mt-2 rounded-2xl bg-white/95 backdrop-blur-xl border border-slate-200 p-6 shadow-xl transition-all duration-300 ease-out ${
+        className={`absolute top-full left-0 w-full mt-2 rounded-2xl bg-white/95 backdrop-blur-xl border border-slate-200 p-6 shadow-xl transition-all duration-300 ease-out ${
           mobileMenuOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-4 pointer-events-none"
