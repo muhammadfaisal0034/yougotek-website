@@ -29,17 +29,17 @@ export function Header() {
       <nav
         className={`flex items-center justify-between px-6 py-3 rounded-full transition-all duration-500 ${
           isScrolled
-            ? "bg-[#00020F]/80 backdrop-blur-xl border border-white/10 shadow-lg shadow-black/20"
-            : "bg-[#00020F]/40 backdrop-blur-md border border-white/5"
+            ? "bg-white/90 backdrop-blur-xl border border-slate-200 shadow-sm"
+            : "bg-white/60 backdrop-blur-md border border-slate-200/50"
         }`}
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 text-xl font-bold tracking-tight" style={{ fontFamily: "var(--font-heading)" }}>
-          <div className="w-8 h-8 rounded-lg bg-[#00FF97] flex items-center justify-center text-[#00020F] text-sm font-black">
+          <div className="w-8 h-8 rounded-lg bg-[#0284c7] flex items-center justify-center text-white text-sm font-black shadow-sm">
             Y
           </div>
-          <span className="text-white">
-            You Go <span className="text-[#00FF97]">Tech</span>
+          <span className="text-slate-900">
+            You Go <span className="text-[#0284c7]">Tech</span>
           </span>
         </Link>
 
@@ -49,7 +49,7 @@ export function Header() {
             <Link
               key={item.name}
               href={item.href}
-              className="px-4 py-2 text-sm font-medium text-[#94A3B8] hover:text-white transition-colors rounded-full hover:bg-white/5"
+              className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors rounded-full hover:bg-slate-50"
             >
               {item.name}
             </Link>
@@ -66,7 +66,7 @@ export function Header() {
         {/* Mobile Menu Button */}
         <button
           type="button"
-          className="lg:hidden p-2 text-[#94A3B8] hover:text-white transition-colors"
+          className="lg:hidden p-2 text-slate-600 hover:text-slate-900 transition-colors"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           <span className="sr-only">Toggle menu</span>
@@ -80,7 +80,7 @@ export function Header() {
 
       {/* Mobile Menu */}
       <div
-        className={`mt-2 rounded-2xl bg-[#00020F]/95 backdrop-blur-xl border border-white/10 p-6 transition-all duration-300 ease-out ${
+        className={`mt-2 rounded-2xl bg-white/95 backdrop-blur-xl border border-slate-200 p-6 shadow-xl transition-all duration-300 ease-out ${
           mobileMenuOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-4 pointer-events-none"
@@ -91,14 +91,14 @@ export function Header() {
             <Link
               key={item.name}
               href={item.href}
-              className="block px-4 py-3 text-base font-medium text-[#94A3B8] hover:text-white hover:bg-white/5 rounded-xl transition-colors"
+              className="block px-4 py-3 text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               {item.name}
             </Link>
           ))}
         </div>
-        <div className="mt-4 pt-4 border-t border-white/10">
+        <div className="mt-4 pt-4 border-t border-slate-100">
           <Link
             href="#contact"
             className="btn-primary w-full justify-center text-sm"

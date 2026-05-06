@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
 import { Globe, Cpu, LineChart, Code, Shield, Cloud } from "lucide-react";
 
@@ -62,16 +62,16 @@ export function Services() {
 
   return (
     <section id="services" className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--bg-primary)" }} ref={container}>
-      <div className="blob-purple w-[500px] h-[500px] top-0 right-0" />
-      <div className="blob-green w-[400px] h-[400px] bottom-0 left-0" />
+      <div className="blob-secondary w-[500px] h-[500px] top-0 right-0" />
+      <div className="blob-primary w-[400px] h-[400px] bottom-0 left-0" />
 
       {/* Top divider */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
         <div className="mx-auto max-w-3xl text-center mb-16">
           <div className="section-label mb-6 mx-auto">Our Capabilities</div>
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-6">
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 mb-6">
             Comprehensive Digital{" "}
             <span className="text-gradient">Transformation</span>
           </h2>
@@ -86,20 +86,20 @@ export function Services() {
             return (
               <div
                 key={service.id}
-                className="service-card glass-card group rounded-2xl p-8 relative overflow-hidden"
+                className="service-card glass-card group rounded-2xl p-8 relative overflow-hidden bg-white"
               >
                 {/* Hover glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#00FF97]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[rgba(2,132,199,0.05)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative z-10">
                   <div className="flex items-center justify-between mb-6">
-                    <div className="p-3 rounded-xl bg-[#00FF97]/10 text-[#00FF97] border border-[#00FF97]/20 group-hover:glow-green transition-shadow duration-300">
+                    <div className="p-3 rounded-xl bg-sky-50 text-[#0284c7] border border-sky-100 group-hover:glow-accent transition-shadow duration-300">
                       <Icon className="w-5 h-5" />
                     </div>
                     <span className="text-2xl font-bold" style={{ color: "var(--text-muted)", fontFamily: "var(--font-heading)" }}>{service.id}</span>
                   </div>
 
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#00FF97] transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#0284c7] transition-colors duration-300">
                     {service.title}
                   </h3>
                   <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>

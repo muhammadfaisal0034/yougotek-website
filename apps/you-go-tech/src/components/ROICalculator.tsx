@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
 import { Calculator } from "lucide-react";
 
@@ -24,9 +24,9 @@ export function ROICalculator() {
   }, { scope: container });
 
   return (
-    <section id="calculator" className="relative py-24 lg:py-32" style={{ background: "var(--bg-primary)" }} ref={container}>
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      <div className="blob-green w-[500px] h-[500px] -top-40 left-1/2 -translate-x-1/2" />
+    <section id="calculator" className="relative py-24 lg:py-32" style={{ background: "var(--bg-secondary)" }} ref={container}>
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+      <div className="blob-primary w-[500px] h-[500px] -top-40 left-1/2 -translate-x-1/2" />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
         <div className="calc-content text-center mb-16">
@@ -34,7 +34,7 @@ export function ROICalculator() {
             <Calculator className="h-3.5 w-3.5" />
             ROI Calculator
           </div>
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6">
             The Cost of <span className="text-gradient">Analog Operations</span>
           </h2>
           <p className="text-lg max-w-2xl mx-auto" style={{ color: "var(--text-secondary)" }}>
@@ -44,10 +44,10 @@ export function ROICalculator() {
 
         <div className="calc-content grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Controls */}
-          <div className="glass-card rounded-2xl p-8 md:p-10">
-            <label htmlFor="hours-slider" className="text-lg font-semibold text-white mb-6 flex justify-between cursor-pointer">
+          <div className="glass-card rounded-2xl p-8 md:p-10 bg-white">
+            <label htmlFor="hours-slider" className="text-lg font-semibold text-slate-900 mb-6 flex justify-between cursor-pointer">
               <span>Manual Hours / Week</span>
-              <span className="text-[#00FF97] font-bold text-2xl" style={{ fontFamily: "var(--font-heading)" }}>{hours} hrs</span>
+              <span className="text-[#0284c7] font-bold text-2xl" style={{ fontFamily: "var(--font-heading)" }}>{hours} hrs</span>
             </label>
             <input
               id="hours-slider"
@@ -65,30 +65,30 @@ export function ROICalculator() {
             </div>
 
             <div className="mt-10 space-y-5">
-              <div className="flex justify-between items-center pb-4 border-b border-white/5">
+              <div className="flex justify-between items-center pb-4 border-b border-slate-100">
                 <span style={{ color: "var(--text-secondary)" }}>Average Hourly Rate</span>
-                <span className="text-white font-medium">${hourlyRate}/hr</span>
+                <span className="text-slate-900 font-medium">${hourlyRate}/hr</span>
               </div>
-              <div className="flex justify-between items-center pb-4 border-b border-white/5">
+              <div className="flex justify-between items-center pb-4 border-b border-slate-100">
                 <span style={{ color: "var(--text-secondary)" }}>Current Yearly Cost</span>
-                <span className="text-white font-medium">${yearlyCost.toLocaleString()}</span>
+                <span className="text-slate-900 font-medium">${yearlyCost.toLocaleString()}</span>
               </div>
               <div className="flex justify-between items-center">
                 <span style={{ color: "var(--text-secondary)" }}>Automation Rate</span>
-                <span className="text-[#00FF97] font-medium">70%</span>
+                <span className="text-[#0284c7] font-medium">70%</span>
               </div>
             </div>
           </div>
 
           {/* Results */}
-          <div className="glass-card rounded-2xl p-8 md:p-10 flex flex-col justify-center relative overflow-hidden group">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#00FF97]/5 to-[#7B61FF]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="glass-card rounded-2xl p-8 md:p-10 flex flex-col justify-center relative overflow-hidden group bg-white">
+            <div className="absolute inset-0 bg-gradient-to-br from-[rgba(2,132,199,0.05)] to-[rgba(79,70,229,0.05)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
             <div className="relative z-10">
               <div className="text-sm tracking-widest uppercase font-bold mb-3" style={{ color: "var(--accent)" }}>
                 Potential Capital Unlocked
               </div>
-              <div className="text-5xl sm:text-7xl font-bold text-white tracking-tighter mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+              <div className="text-5xl sm:text-7xl font-bold text-slate-900 tracking-tighter mb-4" style={{ fontFamily: "var(--font-heading)" }}>
                 ${yearlySavings.toLocaleString(undefined, { maximumFractionDigits: 0 })}
               </div>
               <p className="leading-relaxed mb-8" style={{ color: "var(--text-secondary)" }}>

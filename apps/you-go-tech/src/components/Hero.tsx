@@ -8,7 +8,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 const ThreeScene = dynamic(() => import("./ThreeScene"), {
   ssr: false,
-  loading: () => <div className="absolute inset-0 bg-[#00020F]" />,
+  loading: () => <div className="absolute inset-0 bg-slate-50" />,
 });
 
 export function Hero() {
@@ -53,16 +53,16 @@ export function Hero() {
     <section ref={container} className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ background: "var(--bg-primary)" }}>
       
       {/* Decorative blobs */}
-      <div className="blob-green w-[600px] h-[600px] -top-40 -right-40" />
-      <div className="blob-purple w-[500px] h-[500px] bottom-0 -left-40" />
+      <div className="blob-primary w-[600px] h-[600px] -top-40 -right-40" />
+      <div className="blob-secondary w-[500px] h-[500px] bottom-0 -left-40" />
 
       {/* 3D Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-60">
         {showScene && <ThreeScene />}
       </div>
 
-      {/* Overlay */}
-      <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,transparent_0%,#00020F_80%)] pointer-events-none" />
+      {/* Overlay - subtle light gradient */}
+      <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(255,255,255,0.8)_80%)] pointer-events-none" />
 
       {/* Content */}
       <div className="relative z-20 mx-auto max-w-5xl px-6 text-center pt-32 pb-20" style={{ minHeight: "500px" }}>
@@ -73,12 +73,11 @@ export function Hero() {
           AI-Powered Digital Agency
         </div>
 
-        {/* LCP Element — always visible, never animated from opacity:0 */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.95] mb-8">
-          <span className="text-white">We Build </span>
-          <span className="text-gradient">Intelligent</span>
+        {/* LCP Element — always visible */}
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.95] mb-8 text-slate-900">
+          We Build <span className="text-gradient">Intelligent</span>
           <br />
-          <span className="text-white">Digital Systems</span>
+          Digital Systems
         </h1>
 
         <p className="hero-desc text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto mb-12" style={{ color: "var(--text-secondary)" }}>
@@ -99,20 +98,20 @@ export function Hero() {
         {/* Stats bar */}
         <div className="flex flex-wrap justify-center gap-8 sm:gap-16">
           <div className="hero-stats text-center">
-            <div className="text-3xl sm:text-4xl font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>50+</div>
-            <div className="text-sm mt-1" style={{ color: "var(--text-muted)" }}>Enterprise Clients</div>
+            <div className="text-3xl sm:text-4xl font-bold text-slate-900" style={{ fontFamily: "var(--font-heading)" }}>50+</div>
+            <div className="text-sm mt-1 font-medium" style={{ color: "var(--text-muted)" }}>Enterprise Clients</div>
           </div>
           <div className="hero-stats text-center">
-            <div className="text-3xl sm:text-4xl font-bold text-[#00FF97]" style={{ fontFamily: "var(--font-heading)" }}>99%</div>
-            <div className="text-sm mt-1" style={{ color: "var(--text-muted)" }}>Client Retention</div>
+            <div className="text-3xl sm:text-4xl font-bold text-[#0284c7]" style={{ fontFamily: "var(--font-heading)" }}>99%</div>
+            <div className="text-sm mt-1 font-medium" style={{ color: "var(--text-muted)" }}>Client Retention</div>
           </div>
           <div className="hero-stats text-center">
-            <div className="text-3xl sm:text-4xl font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>10x</div>
-            <div className="text-sm mt-1" style={{ color: "var(--text-muted)" }}>Productivity Boost</div>
+            <div className="text-3xl sm:text-4xl font-bold text-slate-900" style={{ fontFamily: "var(--font-heading)" }}>10x</div>
+            <div className="text-sm mt-1 font-medium" style={{ color: "var(--text-muted)" }}>Productivity Boost</div>
           </div>
           <div className="hero-stats text-center">
-            <div className="text-3xl sm:text-4xl font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>24/7</div>
-            <div className="text-sm mt-1" style={{ color: "var(--text-muted)" }}>AI Uptime</div>
+            <div className="text-3xl sm:text-4xl font-bold text-slate-900" style={{ fontFamily: "var(--font-heading)" }}>24/7</div>
+            <div className="text-sm mt-1 font-medium" style={{ color: "var(--text-muted)" }}>AI Uptime</div>
           </div>
         </div>
       </div>
