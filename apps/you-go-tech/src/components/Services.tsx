@@ -48,16 +48,16 @@ export function Services() {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const cards = gsap.utils.toArray(".service-card");
-    cards.forEach((card: any) => {
-      gsap.fromTo(card,
+    const timer = setTimeout(() => {
+      gsap.fromTo(".service-card",
         { y: 40, opacity: 0 },
         {
-          y: 0, opacity: 1, duration: 0.6, ease: "power2.out",
-          scrollTrigger: { trigger: card, start: "top 88%" }
+          y: 0, opacity: 1, duration: 0.7, stagger: 0.15, ease: "power2.out",
+          scrollTrigger: { trigger: container.current, start: "top 75%" }
         }
       );
-    });
+    }, 100);
+    return () => clearTimeout(timer);
   }, { scope: container });
 
   return (

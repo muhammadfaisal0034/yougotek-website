@@ -14,13 +14,16 @@ export function ROICalculator() {
   const yearlySavings = yearlyCost * automationRate;
 
   useGSAP(() => {
-    gsap.fromTo(".calc-content",
-      { y: 40, opacity: 0 },
-      {
-        y: 0, opacity: 1, duration: 0.7, stagger: 0.15, ease: "power2.out",
-        scrollTrigger: { trigger: container.current, start: "top 75%" }
-      }
-    );
+    const timer = setTimeout(() => {
+      gsap.fromTo(".calc-content",
+        { y: 40, opacity: 0 },
+        {
+          y: 0, opacity: 1, duration: 0.7, stagger: 0.15, ease: "power2.out",
+          scrollTrigger: { trigger: container.current, start: "top 75%" }
+        }
+      );
+    }, 100);
+    return () => clearTimeout(timer);
   }, { scope: container });
 
   return (

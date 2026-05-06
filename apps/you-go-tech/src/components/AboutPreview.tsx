@@ -9,13 +9,16 @@ export function AboutPreview() {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    gsap.fromTo(".about-content",
-      { y: 50, opacity: 0 },
-      {
-        y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: "power2.out",
-        scrollTrigger: { trigger: container.current, start: "top 75%" }
-      }
-    );
+    const timer = setTimeout(() => {
+      gsap.fromTo(".about-content",
+        { y: 30, opacity: 0 },
+        {
+          y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out",
+          scrollTrigger: { trigger: container.current, start: "top 85%" }
+        }
+      );
+    }, 100);
+    return () => clearTimeout(timer);
   }, { scope: container });
 
   return (

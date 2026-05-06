@@ -9,13 +9,16 @@ export function GlobalFootprint() {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    gsap.fromTo(".footprint-item",
-      { y: 30, opacity: 0 },
-      {
-        y: 0, opacity: 1, duration: 0.6, stagger: 0.15, ease: "power2.out",
-        scrollTrigger: { trigger: container.current, start: "top 85%" }
-      }
-    );
+    const timer = setTimeout(() => {
+      gsap.fromTo(".footprint-item",
+        { y: 30, opacity: 0 },
+        {
+          y: 0, opacity: 1, duration: 0.6, stagger: 0.12, ease: "power2.out",
+          scrollTrigger: { trigger: container.current, start: "top 80%" }
+        }
+      );
+    }, 100);
+    return () => clearTimeout(timer);
   }, { scope: container });
 
   return (

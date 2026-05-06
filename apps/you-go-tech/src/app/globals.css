@@ -113,16 +113,27 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(2, 132, 199, 0.08) 0%, transparent 70%);
-  filter: blur(60px);
+  filter: blur(40px); /* Reduced from 60px for performance */
   pointer-events: none;
+  will-change: transform, opacity;
 }
 
 .blob-secondary {
   position: absolute;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(79, 70, 229, 0.06) 0%, transparent 70%);
-  filter: blur(60px);
+  filter: blur(40px); /* Reduced from 60px for performance */
   pointer-events: none;
+  will-change: transform, opacity;
+}
+
+section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px;
+}
+
+#hero {
+  content-visibility: visible;
 }
 
 /* ── Button styles ── */
