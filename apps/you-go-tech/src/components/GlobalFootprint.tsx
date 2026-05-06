@@ -19,7 +19,7 @@ export function GlobalFootprint() {
   }, { scope: container });
 
   return (
-    <section className="relative py-24 lg:py-32" style={{ background: "var(--bg-primary)" }} ref={container}>
+    <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--bg-primary)" }} ref={container}>
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
       <div className="blob-secondary pointer-events-none w-[400px] h-[400px] top-10 -left-20" />
 

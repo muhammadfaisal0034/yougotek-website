@@ -24,7 +24,7 @@ export function ROICalculator() {
   }, { scope: container });
 
   return (
-    <section id="calculator" className="relative py-24 lg:py-32" style={{ background: "var(--bg-secondary)" }} ref={container}>
+    <section id="calculator" className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--bg-secondary)" }} ref={container}>
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
       <div className="blob-primary pointer-events-none w-[500px] h-[500px] -top-40 left-1/2 -translate-x-1/2" />
 

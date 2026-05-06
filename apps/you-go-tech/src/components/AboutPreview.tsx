@@ -19,7 +19,7 @@ export function AboutPreview() {
   }, { scope: container });
 
   return (
-    <section id="about" className="relative py-24 lg:py-32" style={{ background: "var(--bg-secondary)" }} ref={container}>
+    <section id="about" className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--bg-secondary)" }} ref={container}>
       <div className="blob-primary pointer-events-none w-[400px] h-[400px] top-20 -right-20" />
       
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
