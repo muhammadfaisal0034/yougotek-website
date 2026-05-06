@@ -9,107 +9,103 @@ const services = [
   {
     id: "01",
     title: "Enterprise Web Platforms",
-    description: "We architect custom, highly-scalable web platforms designed for high traffic and complex business logic.",
+    description: "Custom, highly-scalable web platforms designed for high traffic and complex business logic. Built with Next.js, React, and modern cloud architectures.",
     icon: Code,
-    color: "bg-sky-500 text-white"
   },
   {
     id: "02",
     title: "AI Integration",
-    description: "Deploying intelligent AI models into your workflows to automate data processing and decision making.",
+    description: "Deploying intelligent AI models into your workflows to automate data processing, decision making, and customer interactions at scale.",
     icon: Cpu,
-    color: "bg-blue-600 text-white"
   },
   {
     id: "03",
-    title: "Digital Growth",
-    description: "Data-driven strategies and robust systems to help you scale your business globally.",
+    title: "Digital Growth Strategy",
+    description: "Data-driven strategies and robust systems to help you scale your business globally with measurable ROI and continuous optimization.",
     icon: LineChart,
-    color: "bg-slate-700 text-white"
   },
   {
     id: "04",
     title: "Cloud Infrastructure",
-    description: "Modern cloud environments ensuring high uptime, infinite scalability, and reduced costs.",
+    description: "Modern cloud environments on AWS, GCP, and Azure ensuring high uptime, infinite scalability, and reduced operational costs.",
     icon: Cloud,
-    color: "bg-slate-700 text-white"
   },
   {
     id: "05",
     title: "Cybersecurity",
-    description: "Protecting your digital assets with enterprise-grade security protocols.",
+    description: "Protecting your digital assets with enterprise-grade security protocols, penetration testing, and compliance frameworks.",
     icon: Shield,
-    color: "bg-blue-600 text-white"
   },
   {
     id: "06",
     title: "Global Reach",
-    description: "Tailored solutions for transitioning online and tapping into new planetary markets.",
+    description: "Tailored solutions for transitioning online and tapping into new planetary markets with multi-language and multi-region support.",
     icon: Globe,
-    color: "bg-sky-500 text-white"
-  }
+  },
 ];
 
 export function Services() {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const cards = gsap.utils.toArray('.service-card');
-    
-    cards.forEach((card: any, i) => {
+    const cards = gsap.utils.toArray(".service-card");
+    cards.forEach((card: any) => {
       gsap.fromTo(card,
-        { y: 50, opacity: 0 },
+        { y: 40, opacity: 0 },
         {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-          }
+          y: 0, opacity: 1, duration: 0.6, ease: "power2.out",
+          scrollTrigger: { trigger: card, start: "top 88%" }
         }
       );
     });
   }, { scope: container });
 
   return (
-    <section id="services" className="py-24 relative bg-slate-900 overflow-hidden border-b border-slate-800" ref={container}>
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-sky-500/5 blur-[150px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/3" />
-      <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-blue-600/5 blur-[180px] rounded-full pointer-events-none translate-y-1/3 -translate-x-1/4" />
-      
+    <section id="services" className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--bg-primary)" }} ref={container}>
+      <div className="blob-purple w-[500px] h-[500px] top-0 right-0" />
+      <div className="blob-green w-[400px] h-[400px] bottom-0 left-0" />
+
+      {/* Top divider */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
-        <div className="mx-auto max-w-3xl text-center mb-20">
-          <h2 className="text-sm font-bold tracking-widest uppercase text-sky-500 mb-4">Capabilities</h2>
-          <p className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-50">
-            Comprehensive Digital Transformation
-          </p>
-          <p className="mt-6 text-lg leading-relaxed text-slate-400">
-            We provide a complete suite of engineering services to modernize your operations. From building robust APIs to deploying intelligent AI assistants.
+        <div className="mx-auto max-w-3xl text-center mb-16">
+          <div className="section-label mb-6 mx-auto">Our Capabilities</div>
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-6">
+            Comprehensive Digital{" "}
+            <span className="text-gradient">Transformation</span>
+          </h2>
+          <p className="text-lg leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+            A complete suite of engineering services to modernize your operations. From building robust APIs to deploying intelligent AI assistants.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service) => {
             const Icon = service.icon;
             return (
-              <div 
+              <div
                 key={service.id}
-                className="service-card group relative p-8 rounded-3xl bg-slate-800/50 border border-slate-700 hover:border-sky-500/50 transition-all duration-300"
+                className="service-card glass-card group rounded-2xl p-8 relative overflow-hidden"
               >
-                <div className="flex items-start gap-4 mb-6">
-                  <div className={`p-4 rounded-2xl ${service.color} group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon className="w-6 h-6" />
+                {/* Hover glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#00FF97]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="p-3 rounded-xl bg-[#00FF97]/10 text-[#00FF97] border border-[#00FF97]/20 group-hover:glow-green transition-shadow duration-300">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <span className="text-2xl font-bold" style={{ color: "var(--text-muted)", fontFamily: "var(--font-heading)" }}>{service.id}</span>
                   </div>
-                  <span className="text-3xl font-bold text-slate-700 ml-auto">{service.id}</span>
+
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#00FF97] transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+                    {service.description}
+                  </p>
                 </div>
-                
-                <h3 className="text-xl font-bold text-slate-50 mb-3 group-hover:text-sky-400 transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-slate-400 leading-relaxed text-sm">
-                  {service.description}
-                </p>
               </div>
             );
           })}

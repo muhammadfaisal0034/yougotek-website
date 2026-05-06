@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { Mail, Phone, Send } from "lucide-react";
+import { Mail, Phone, Send, MapPin } from "lucide-react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -13,15 +13,8 @@ export function ContactSection() {
     gsap.fromTo(".contact-element",
       { y: 40, opacity: 0 },
       {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: container.current,
-          start: "top 75%",
-        }
+        y: 0, opacity: 1, duration: 0.7, stagger: 0.15, ease: "power2.out",
+        scrollTrigger: { trigger: container.current, start: "top 75%" }
       }
     );
   }, { scope: container });
@@ -29,86 +22,136 @@ export function ContactSection() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
-    setTimeout(() => {
-      setStatus("sent");
-    }, 1500);
+    setTimeout(() => setStatus("sent"), 1500);
   };
 
   return (
-    <section id="contact" className="py-24 relative bg-slate-900" ref={container}>
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(14,165,233,0.1)_0%,rgba(15,23,42,1)_100%)] pointer-events-none" />
-      
+    <section id="contact" className="relative py-24 lg:py-32" style={{ background: "var(--bg-primary)" }} ref={container}>
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="blob-green w-[500px] h-[500px] bottom-0 right-0" />
+      <div className="blob-purple w-[400px] h-[400px] top-20 -left-20" />
+
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          
-          <div>
-            <div className="contact-element">
-              <h2 className="text-sm font-bold tracking-widest uppercase text-sky-500 mb-4">Initiate Contact</h2>
-              <h3 className="text-4xl sm:text-5xl font-bold text-slate-50 mb-6 leading-tight">
-                Ready to Upgrade Your Enterprise?
-              </h3>
-              <p className="text-lg text-slate-400 mb-10 leading-relaxed">
-                Connect with our strategic engineers in KSA or Canada. We'll audit your current workflows and design a custom digital transformation roadmap.
-              </p>
+        <div className="contact-element text-center mb-16">
+          <div className="section-label mb-6 mx-auto">
+            <Mail className="h-3.5 w-3.5" />
+            Get In Touch
+          </div>
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+            Ready to <span className="text-gradient">Transform</span> Your Business?
+          </h2>
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: "var(--text-secondary)" }}>
+            Book a free strategy call. We will audit your current operations and show you how to 10x your efficiency.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+          {/* Contact Info */}
+          <div className="lg:col-span-2 space-y-6">
+            <div className="contact-element glass-card rounded-2xl p-6 group">
+              <div className="flex items-center gap-4">
+                <div className="p-3 rounded-xl bg-[#00FF97]/10 text-[#00FF97] border border-[#00FF97]/20 shrink-0">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-sm font-semibold uppercase tracking-wider mb-1" style={{ color: "var(--text-muted)" }}>Email</div>
+                  <a href="mailto:contact@yougotech.com" className="text-white hover:text-[#00FF97] transition-colors font-medium">
+                    contact@yougotech.com
+                  </a>
+                </div>
+              </div>
             </div>
-            
-            <div className="space-y-6 contact-element">
-              <a
-                href="mailto:strategy@yougotech.com"
-                className="flex items-center gap-4 text-slate-50 p-4 rounded-2xl bg-slate-800 border border-slate-700 hover:border-sky-500 transition-colors"
-              >
-                <Mail className="text-sky-500 shrink-0" />
-                <span className="font-semibold">strategy@yougotech.com</span>
-              </a>
-              <a
-                href="tel:+18003444825"
-                className="flex items-center gap-4 text-slate-50 p-4 rounded-2xl bg-slate-800 border border-slate-700 hover:border-sky-500 transition-colors"
-              >
-                <Phone className="text-sky-500 shrink-0" />
-                <span className="font-semibold">+1 (800) DIGITAL</span>
-              </a>
+
+            <div className="contact-element glass-card rounded-2xl p-6 group">
+              <div className="flex items-center gap-4">
+                <div className="p-3 rounded-xl bg-[#7B61FF]/10 text-[#7B61FF] border border-[#7B61FF]/20 shrink-0">
+                  <Phone className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-sm font-semibold uppercase tracking-wider mb-1" style={{ color: "var(--text-muted)" }}>Phone</div>
+                  <a href="tel:+1234567890" className="text-white hover:text-[#7B61FF] transition-colors font-medium">
+                    +1 (234) 567-890
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="contact-element glass-card rounded-2xl p-6 group">
+              <div className="flex items-center gap-4">
+                <div className="p-3 rounded-xl bg-[#00FF97]/10 text-[#00FF97] border border-[#00FF97]/20 shrink-0">
+                  <MapPin className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-sm font-semibold uppercase tracking-wider mb-1" style={{ color: "var(--text-muted)" }}>Locations</div>
+                  <p className="text-white font-medium">Riyadh, KSA · Toronto, CA</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="contact-element bg-slate-800 rounded-[2rem] p-8 border border-slate-700 shadow-xl">
-            <h4 className="text-2xl font-bold text-slate-50 mb-6">Request an Audit</h4>
-            
-            <div className="space-y-5">
-              <div>
-                <label className="block text-sm font-semibold text-slate-300 mb-2">Company Name</label>
-                <input required type="text" className="w-full px-4 py-3 rounded-xl border border-slate-600 bg-slate-900 text-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all" placeholder="Acme Corp" />
-              </div>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {/* Form */}
+          <div className="contact-element lg:col-span-3">
+            <form onSubmit={handleSubmit} className="glass-card rounded-2xl p-8 md:p-10 space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-semibold text-slate-300 mb-2">Full Name</label>
-                  <input required type="text" className="w-full px-4 py-3 rounded-xl border border-slate-600 bg-slate-900 text-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all" placeholder="John Doe" />
+                  <label htmlFor="name" className="block text-sm font-medium text-white mb-2">Full Name</label>
+                  <input
+                    id="name"
+                    type="text"
+                    required
+                    placeholder="John Doe"
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:border-[#00FF97]/50 focus:outline-none focus:ring-1 focus:ring-[#00FF97]/30 transition-colors"
+                  />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-slate-300 mb-2">Email Address</label>
-                  <input required type="email" className="w-full px-4 py-3 rounded-xl border border-slate-600 bg-slate-900 text-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all" placeholder="john@acme.com" />
+                  <label htmlFor="email" className="block text-sm font-medium text-white mb-2">Email Address</label>
+                  <input
+                    id="email"
+                    type="email"
+                    required
+                    placeholder="john@company.com"
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:border-[#00FF97]/50 focus:outline-none focus:ring-1 focus:ring-[#00FF97]/30 transition-colors"
+                  />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-slate-300 mb-2">Current Bottlenecks / Goals</label>
-                <textarea required rows={4} className="w-full px-4 py-3 rounded-xl border border-slate-600 bg-slate-900 text-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all resize-none" placeholder="We need to automate our lead generation and rebuild our client portal..." />
+                <label htmlFor="company" className="block text-sm font-medium text-white mb-2">Company</label>
+                <input
+                  id="company"
+                  type="text"
+                  placeholder="Your Company"
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:border-[#00FF97]/50 focus:outline-none focus:ring-1 focus:ring-[#00FF97]/30 transition-colors"
+                />
               </div>
 
-              <button 
-                type="submit" 
-                disabled={status !== "idle"}
-                className="w-full flex items-center justify-center gap-2 rounded-xl bg-sky-500 px-6 py-4 text-white font-bold hover:bg-sky-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-white mb-2">Project Details</label>
+                <textarea
+                  id="message"
+                  rows={4}
+                  required
+                  placeholder="Tell us about your project and goals..."
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:border-[#00FF97]/50 focus:outline-none focus:ring-1 focus:ring-[#00FF97]/30 transition-colors resize-none"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="btn-primary w-full justify-center py-4 text-base disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {status === "idle" && (
-                  <>Submit Request <Send className="w-4 h-4" /></>
+                  <>
+                    Send Message
+                    <Send className="h-4 w-4" />
+                  </>
                 )}
-                {status === "sending" && "Processing..."}
-                {status === "sent" && "Received. We'll be in touch."}
+                {status === "sending" && "Sending..."}
+                {status === "sent" && "✓ Message Sent!"}
               </button>
-            </div>
-          </form>
-
+            </form>
+          </div>
         </div>
       </div>
     </section>

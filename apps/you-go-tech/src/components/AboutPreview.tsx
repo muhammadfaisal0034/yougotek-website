@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
-import { Users, Award, Target } from "lucide-react";
+import { Users, Target, Zap } from "lucide-react";
 
 export function AboutPreview() {
   const container = useRef<HTMLDivElement>(null);
@@ -12,80 +12,88 @@ export function AboutPreview() {
     gsap.fromTo(".about-content",
       { y: 50, opacity: 0 },
       {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: container.current,
-          start: "top 75%",
-        }
+        y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: "power2.out",
+        scrollTrigger: { trigger: container.current, start: "top 75%" }
       }
     );
   }, { scope: container });
 
   return (
-    <section id="about" className="py-24 relative bg-slate-900 border-y border-slate-800" ref={container}>
+    <section id="about" className="relative py-24 lg:py-32" style={{ background: "var(--bg-primary)" }} ref={container}>
+      <div className="blob-green w-[400px] h-[400px] top-20 -right-20" />
+      
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
-          <div className="about-content relative">
-            <div className="absolute -left-8 -top-8 w-32 h-32 bg-sky-500/10 rounded-full blur-2xl" />
-            <h2 className="text-sm font-bold tracking-widest uppercase text-sky-400 mb-4">About You Go Tech</h2>
-            <h3 className="text-4xl sm:text-5xl font-bold text-slate-50 mb-6 leading-tight">
-              Bridging Human Intelligence with AI Efficiency.
-            </h3>
-            <p className="text-lg text-slate-400 mb-8 leading-relaxed">
+          {/* Left column — text */}
+          <div className="about-content">
+            <div className="section-label mb-6">About Us</div>
+            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight">
+              Bridging Human Intelligence with{" "}
+              <span className="text-gradient">AI Efficiency</span>
+            </h2>
+            <p className="text-lg leading-relaxed mb-10" style={{ color: "var(--text-secondary)" }}>
               We are not just a development agency. We are your strategic digital partners. Founded on the principle that technology should empower, not replace, human creativity, we build autonomous systems and robust web platforms that act as leverage for your workforce.
             </p>
-            
+
             <div className="space-y-6">
               <div className="flex items-start gap-4">
-                <div className="p-3 bg-slate-800 rounded-xl text-sky-400 mt-1 border border-slate-700">
-                  <Users className="w-6 h-6" />
+                <div className="p-3 rounded-xl bg-[#00FF97]/10 text-[#00FF97] border border-[#00FF97]/20 mt-1 shrink-0">
+                  <Users className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-50 text-lg">Human-Controlled AI</h4>
-                  <p className="text-slate-400 text-sm mt-1">Our AI implementations are designed to be overseen by your team, multiplying their output tenfold while maintaining human empathy.</p>
+                  <h4 className="font-bold text-white text-lg">Human-Controlled AI</h4>
+                  <p className="text-sm mt-1" style={{ color: "var(--text-secondary)" }}>Our AI implementations are designed to be overseen by your team, multiplying their output tenfold while maintaining human empathy.</p>
                 </div>
               </div>
-              
+
               <div className="flex items-start gap-4">
-                <div className="p-3 bg-slate-800 rounded-xl text-sky-400 mt-1 border border-slate-700">
-                  <Target className="w-6 h-6" />
+                <div className="p-3 rounded-xl bg-[#7B61FF]/10 text-[#7B61FF] border border-[#7B61FF]/20 mt-1 shrink-0">
+                  <Target className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-50 text-lg">Precision Engineering</h4>
-                  <p className="text-slate-400 text-sm mt-1">Every application we build is tailored to your exact business specifications, ensuring that technology serves your strategy.</p>
+                  <h4 className="font-bold text-white text-lg">Precision Engineering</h4>
+                  <p className="text-sm mt-1" style={{ color: "var(--text-secondary)" }}>Every application we build is tailored to your exact business specifications, ensuring that technology serves your strategy.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-xl bg-[#00FF97]/10 text-[#00FF97] border border-[#00FF97]/20 mt-1 shrink-0">
+                  <Zap className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-white text-lg">Rapid Deployment</h4>
+                  <p className="text-sm mt-1" style={{ color: "var(--text-secondary)" }}>We deliver production-ready systems in weeks, not months. Agile sprints with continuous delivery pipelines ensure rapid time-to-market.</p>
                 </div>
               </div>
             </div>
-            
-            {/* "Read Our Full Story" → scrolls to #about for now; can link to /about page later */}
-            <a
-              href="#about"
-              className="mt-10 inline-block rounded-xl border border-slate-700 bg-slate-800 px-6 py-3 text-slate-50 font-semibold hover:bg-slate-700 transition-colors"
-            >
+
+            <a href="#contact" className="btn-primary mt-10 inline-flex">
               Read Our Full Story
             </a>
           </div>
-          
-          <div className="about-content relative h-[500px] rounded-[2rem] overflow-hidden bg-slate-800 border border-slate-700 p-8 flex items-center justify-center">
-             <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900" />
-             <div className="relative z-10 grid grid-cols-2 gap-4 w-full h-full">
-                <div className="rounded-2xl bg-slate-900/50 backdrop-blur-md shadow-sm border border-slate-700 h-full transform -translate-y-4 flex flex-col items-center justify-center p-6 text-center">
-                    <Award className="w-12 h-12 text-sky-400 mb-4" />
-                    <span className="text-4xl font-bold text-slate-50">50+</span>
-                    <span className="text-sm text-slate-400 font-bold uppercase tracking-wider mt-2">Enterprise Clients</span>
-                </div>
-                <div className="rounded-2xl bg-gradient-to-br from-sky-500 to-blue-600 shadow-lg h-full transform translate-y-8 flex flex-col items-center justify-center p-6 text-center">
-                    <span className="text-4xl font-bold text-white">99%</span>
-                    <span className="text-sm text-sky-100 font-bold uppercase tracking-wider mt-2">Client Retention</span>
-                </div>
-             </div>
-          </div>
 
+          {/* Right column — stats cards */}
+          <div className="about-content relative">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="glass-card rounded-2xl p-8 text-center">
+                <div className="text-5xl font-bold text-[#00FF97] mb-2" style={{ fontFamily: "var(--font-heading)" }}>50+</div>
+                <div className="text-sm font-semibold uppercase tracking-wider" style={{ color: "var(--text-muted)" }}>Enterprise Clients</div>
+              </div>
+              <div className="glass-card rounded-2xl p-8 text-center translate-y-8">
+                <div className="text-5xl font-bold text-white mb-2" style={{ fontFamily: "var(--font-heading)" }}>99%</div>
+                <div className="text-sm font-semibold uppercase tracking-wider" style={{ color: "var(--text-muted)" }}>Client Retention</div>
+              </div>
+              <div className="glass-card rounded-2xl p-8 text-center">
+                <div className="text-5xl font-bold text-white mb-2" style={{ fontFamily: "var(--font-heading)" }}>10x</div>
+                <div className="text-sm font-semibold uppercase tracking-wider" style={{ color: "var(--text-muted)" }}>Productivity Boost</div>
+              </div>
+              <div className="glass-card rounded-2xl p-8 text-center translate-y-8">
+                <div className="text-5xl font-bold text-[#7B61FF] mb-2" style={{ fontFamily: "var(--font-heading)" }}>24/7</div>
+                <div className="text-sm font-semibold uppercase tracking-wider" style={{ color: "var(--text-muted)" }}>AI Uptime</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
