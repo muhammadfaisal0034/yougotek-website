@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0f172a; /* Slate 900 */
+  --foreground: #f8fafc; /* Slate 50 */
+  
+  --primary: #0ea5e9; /* Sky 500 */
+  --secondary: #38bdf8; /* Sky 400 */
+  --accent: #0ea5e9;
+  --surface: #1e293b; /* Slate 800 */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-surface: var(--surface);
+  
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans), sans-serif;
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
