@@ -23,7 +23,7 @@ function SpinningCube() {
 
 export default function ThreeScene() {
   return (
-    <div className="absolute inset-0 z-0 h-full w-full pointer-events-auto">
+    <div className="absolute inset-0 z-0 h-full w-full pointer-events-none">
       <Canvas camera={{ position: [0, 0, 5] }}>
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} color="#0284c7" intensity={0.8} />

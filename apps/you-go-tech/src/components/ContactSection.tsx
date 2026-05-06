@@ -28,8 +28,8 @@ export function ContactSection() {
   return (
     <section id="contact" className="relative py-24 lg:py-32" style={{ background: "var(--bg-secondary)" }} ref={container}>
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-      <div className="blob-primary w-[500px] h-[500px] bottom-0 right-0" />
-      <div className="blob-secondary w-[400px] h-[400px] top-20 -left-20" />
+      <div className="blob-primary pointer-events-none w-[500px] h-[500px] bottom-0 right-0" />
+      <div className="blob-secondary pointer-events-none w-[400px] h-[400px] top-20 -left-20" />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
         <div className="contact-element text-center mb-16">

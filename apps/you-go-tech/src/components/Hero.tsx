@@ -53,8 +53,8 @@ export function Hero() {
     <section ref={container} className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ background: "var(--bg-primary)" }}>
       
       {/* Decorative blobs */}
-      <div className="blob-primary w-[600px] h-[600px] -top-40 -right-40" />
-      <div className="blob-secondary w-[500px] h-[500px] bottom-0 -left-40" />
+      <div className="blob-primary pointer-events-none w-[600px] h-[600px] -top-40 -right-40" />
+      <div className="blob-secondary pointer-events-none w-[500px] h-[500px] bottom-0 -left-40" />
 
       {/* 3D Background */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-60">

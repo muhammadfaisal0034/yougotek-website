@@ -62,8 +62,8 @@ export function Services() {
 
   return (
     <section id="services" className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--bg-primary)" }} ref={container}>
-      <div className="blob-secondary w-[500px] h-[500px] top-0 right-0" />
-      <div className="blob-primary w-[400px] h-[400px] bottom-0 left-0" />
+      <div className="blob-secondary pointer-events-none w-[500px] h-[500px] top-0 right-0" />
+      <div className="blob-primary pointer-events-none w-[400px] h-[400px] bottom-0 left-0" />
 
       {/* Top divider */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
@@ -89,7 +89,7 @@ export function Services() {
                 className="service-card glass-card group rounded-2xl p-8 relative overflow-hidden bg-white"
               >
                 {/* Hover glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[rgba(2,132,199,0.05)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-[rgba(2,132,199,0.05)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative z-10">
                   <div className="flex items-center justify-between mb-6">

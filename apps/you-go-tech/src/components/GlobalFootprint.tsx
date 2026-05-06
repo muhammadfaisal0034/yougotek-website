@@ -21,7 +21,7 @@ export function GlobalFootprint() {
   return (
     <section className="relative py-24 lg:py-32" style={{ background: "var(--bg-primary)" }} ref={container}>
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-      <div className="blob-secondary w-[400px] h-[400px] top-10 -left-20" />
+      <div className="blob-secondary pointer-events-none w-[400px] h-[400px] top-10 -left-20" />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
@@ -36,7 +36,7 @@ export function GlobalFootprint() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="footprint-item glass-card rounded-2xl p-8 group relative overflow-hidden bg-white">
-            <div className="absolute inset-0 bg-gradient-to-br from-[rgba(2,132,199,0.05)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-[rgba(2,132,199,0.05)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <div className="relative z-10">
               <div className="p-3 rounded-xl bg-sky-50 text-[#0284c7] border border-sky-100 w-fit mb-6">
                 <MapPin className="w-5 h-5" />
@@ -49,7 +49,7 @@ export function GlobalFootprint() {
           </div>
 
           <div className="footprint-item glass-card rounded-2xl p-8 group relative overflow-hidden bg-white">
-            <div className="absolute inset-0 bg-gradient-to-br from-[rgba(79,70,229,0.05)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-[rgba(79,70,229,0.05)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <div className="relative z-10">
               <div className="p-3 rounded-xl bg-indigo-50 text-indigo-600 border border-indigo-100 w-fit mb-6">
                 <MapPin className="w-5 h-5" />
@@ -62,7 +62,7 @@ export function GlobalFootprint() {
           </div>
 
           <div className="footprint-item glass-card rounded-2xl p-8 group relative overflow-hidden bg-white">
-            <div className="absolute inset-0 bg-gradient-to-br from-[rgba(2,132,199,0.05)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-[rgba(2,132,199,0.05)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <div className="relative z-10">
               <div className="p-3 rounded-xl bg-sky-50 text-[#0284c7] border border-sky-100 w-fit mb-6">
                 <Globe className="w-5 h-5" />

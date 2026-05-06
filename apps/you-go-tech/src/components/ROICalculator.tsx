@@ -26,7 +26,7 @@ export function ROICalculator() {
   return (
     <section id="calculator" className="relative py-24 lg:py-32" style={{ background: "var(--bg-secondary)" }} ref={container}>
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-      <div className="blob-primary w-[500px] h-[500px] -top-40 left-1/2 -translate-x-1/2" />
+      <div className="blob-primary pointer-events-none w-[500px] h-[500px] -top-40 left-1/2 -translate-x-1/2" />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
         <div className="calc-content text-center mb-16">
@@ -82,7 +82,7 @@ export function ROICalculator() {
 
           {/* Results */}
           <div className="glass-card rounded-2xl p-8 md:p-10 flex flex-col justify-center relative overflow-hidden group bg-white">
-            <div className="absolute inset-0 bg-gradient-to-br from-[rgba(2,132,199,0.05)] to-[rgba(79,70,229,0.05)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-[rgba(2,132,199,0.05)] to-[rgba(79,70,229,0.05)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
             <div className="relative z-10">
               <div className="text-sm tracking-widest uppercase font-bold mb-3" style={{ color: "var(--accent)" }}>

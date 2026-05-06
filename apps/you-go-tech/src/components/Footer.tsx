@@ -11,9 +11,9 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* CTA Banner */}
         <div className="glass-card rounded-3xl p-10 md:p-16 text-center mb-20 relative overflow-hidden bg-white">
-          <div className="absolute inset-0 bg-gradient-to-br from-[rgba(2,132,199,0.05)] via-transparent to-[rgba(79,70,229,0.05)]" />
-          <div className="blob-primary w-[300px] h-[300px] -top-20 -left-20" />
-          <div className="blob-secondary w-[300px] h-[300px] -bottom-20 -right-20" />
+          <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-[rgba(2,132,199,0.05)] via-transparent to-[rgba(79,70,229,0.05)]" />
+          <div className="blob-primary pointer-events-none w-[300px] h-[300px] -top-20 -left-20" />
+          <div className="blob-secondary pointer-events-none w-[300px] h-[300px] -bottom-20 -right-20" />
           
           <div className="relative z-10">
             <h2 className="text-3xl sm:text-5xl font-bold text-slate-900 mb-6 tracking-tight" style={{ fontFamily: "var(--font-heading)" }}>
