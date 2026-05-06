@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
 import { Users, Award, Target } from "lucide-react";

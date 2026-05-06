@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
 import { Globe, Cpu, LineChart, Code, Shield, Cloud } from "lucide-react";
