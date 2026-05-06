@@ -2,13 +2,8 @@
 
 import { useState, useRef } from "react";
 import { Mail, Phone, Send } from "lucide-react";
-import gsap from "gsap";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
-}
 
 export function ContactSection() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");

@@ -2,13 +2,8 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Calculator } from "lucide-react";
-import gsap from "gsap";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
-}
 
 export function ROICalculator() {
   const [hours, setHours] = useState(40);
@@ -65,11 +60,12 @@ export function ROICalculator() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-slate-800 border border-slate-700 rounded-[2.5rem] p-8 md:p-12 shadow-xl">
           {/* Controls */}
           <div className="flex flex-col justify-center">
-            <label className="text-lg font-semibold text-slate-50 mb-6 flex justify-between">
+            <label htmlFor="hours-slider" className="text-lg font-semibold text-slate-50 mb-6 flex justify-between cursor-pointer">
               <span>Manual Hours / Week:</span>
               <span className="text-sky-400 font-bold text-2xl">{hours} hrs</span>
             </label>
             <input 
+              id="hours-slider"
               type="range" 
               min="10" 
               max="200" 

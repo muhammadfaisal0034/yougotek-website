@@ -2,13 +2,8 @@
 
 import { useRef } from "react";
 import { MapPin, Globe } from "lucide-react";
-import gsap from "gsap";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
-}
 
 export function GlobalFootprint() {
   const container = useRef<HTMLDivElement>(null);

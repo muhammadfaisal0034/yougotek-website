@@ -1,10 +1,15 @@
 "use client";
 
 import { useRef } from "react";
-import gsap from "gsap";
+import { gsap } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
+import dynamic from "next/dynamic";
 import { ArrowRight, Globe } from "lucide-react";
-import ThreeScene from "./ThreeScene";
+
+const ThreeScene = dynamic(() => import("./ThreeScene"), { 
+  ssr: false,
+  loading: () => <div className="absolute inset-0 bg-slate-900" />
+});
 
 export function Hero() {
   const container = useRef<HTMLDivElement>(null);

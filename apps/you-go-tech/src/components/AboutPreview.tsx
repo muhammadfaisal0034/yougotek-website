@@ -1,14 +1,8 @@
 "use client";
 
-import { useRef } from "react";
-import gsap from "gsap";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { Users, Award, Target } from "lucide-react";
-
-if (typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
-}
 
 export function AboutPreview() {
   const container = useRef<HTMLDivElement>(null);
