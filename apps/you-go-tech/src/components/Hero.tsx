@@ -1,11 +1,12 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { gsap } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
 import dynamic from "next/dynamic";
 import { ArrowRight, Globe } from "lucide-react";
 
+// Only load ThreeScene after the page is idle — not immediately on dynamic import
 const ThreeScene = dynamic(() => import("./ThreeScene"), { 
   ssr: false,
   loading: () => <div className="absolute inset-0 bg-slate-900" />
@@ -13,23 +14,33 @@ const ThreeScene = dynamic(() => import("./ThreeScene"), {
 
 export function Hero() {
   const container = useRef<HTMLDivElement>(null);
+  const [showScene, setShowScene] = useState(false);
+
+  // Defer 3D scene until AFTER the browser is idle (post-LCP)
+  useEffect(() => {
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      const id = requestIdleCallback(() => setShowScene(true), { timeout: 3000 });
+      return () => cancelIdleCallback(id);
+    } else {
+      // Fallback for Safari — defer by 2s
+      const timer = setTimeout(() => setShowScene(true), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   useGSAP(() => {
     const tl = gsap.timeline();
 
+    // NOTE: hero-title-line starts VISIBLE (it is the LCP element).
+    // We only animate secondary elements.
     tl.fromTo(".hero-eyebrow",
       { y: 20, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.2 }
     )
-    .fromTo(".hero-title-line",
-      { y: 100, opacity: 0, rotationX: -20 },
-      { y: 0, opacity: 1, rotationX: 0, duration: 1, stagger: 0.15, ease: "power4.out" },
-      "-=0.4"
-    )
     .fromTo(".hero-desc",
       { y: 20, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
-      "-=0.6"
+      "-=0.4"
     )
     .fromTo(".hero-cta",
       { y: 20, opacity: 0, scale: 0.95 },
@@ -58,21 +69,22 @@ export function Hero() {
   return (
     <section ref={container} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-slate-900">
       
-      {/* 3D WebGL Background — wrapped in pointer-events-none so it never blocks UI */}
+      {/* 3D WebGL Background — only loaded after browser is idle */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <ThreeScene />
+        {showScene && <ThreeScene />}
       </div>
 
       {/* Radial overlay */}
       <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,rgba(15,23,42,0.6)_0%,rgba(15,23,42,0.95)_100%)] pointer-events-none" />
 
-      {/* All text + CTAs — z-20 so they sit above canvas + overlay */}
-      <div className="hero-text-container relative z-20 mx-auto max-w-6xl px-6 text-center mt-12">
+      {/* All text + CTAs — z-20, min-height prevents CLS from font swap */}
+      <div className="hero-text-container relative z-20 mx-auto max-w-6xl px-6 text-center mt-12" style={{ minHeight: "420px" }}>
         <div className="hero-eyebrow inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-slate-800/80 px-4 py-1.5 text-sm font-semibold tracking-widest text-sky-400 shadow-sm backdrop-blur-md mb-8">
           <Globe className="h-4 w-4" />
           You Go Tech — AI Agency
         </div>
         
+        {/* LCP element — renders visible immediately, NO opacity:0 animation */}
         <h1 className="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tighter text-slate-50" style={{ perspective: "1000px" }}>
           <div className="overflow-hidden pb-2">
             <div className="hero-title-line">Digital Infrastructure.</div>

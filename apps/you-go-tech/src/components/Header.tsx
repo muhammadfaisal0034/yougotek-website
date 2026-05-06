@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, Globe } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -20,7 +19,7 @@ export function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -73,57 +72,54 @@ export function Header() {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute inset-x-0 top-0 z-50 origin-top bg-slate-900 shadow-xl ring-1 ring-slate-800 p-6"
+      {/* Mobile Menu — pure CSS transitions instead of framer-motion */}
+      <div
+        className={`absolute inset-x-0 top-0 z-50 origin-top bg-slate-900 shadow-xl ring-1 ring-slate-800 p-6 transition-all duration-300 ease-out ${
+          mobileMenuOpen
+            ? "opacity-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 -translate-y-5 pointer-events-none"
+        }`}
+      >
+        <div className="flex items-center justify-between">
+          <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2 text-2xl font-bold tracking-tight text-slate-50">
+            <Globe className="h-8 w-8 text-sky-500" />
+            <span>You Go <span className="text-sky-500">Tech.</span></span>
+          </Link>
+          <button
+            type="button"
+            className="-m-2.5 rounded-md p-2.5 text-slate-400"
+            onClick={() => setMobileMenuOpen(false)}
           >
-            <div className="flex items-center justify-between">
-              <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2 text-2xl font-bold tracking-tight text-slate-50">
-                <Globe className="h-8 w-8 text-sky-500" />
-                <span>You Go <span className="text-sky-500">Tech.</span></span>
-              </Link>
-              <button
-                type="button"
-                className="-m-2.5 rounded-md p-2.5 text-slate-400"
+            <span className="sr-only">Close menu</span>
+            <X className="h-6 w-6" aria-hidden="true" />
+          </button>
+        </div>
+        <div className="mt-6 flow-root">
+          <div className="-my-6 divide-y divide-slate-800">
+            <div className="space-y-2 py-6">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-slate-300 hover:bg-slate-800"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+            <div className="py-6">
+              <Link
+                href="#contact"
+                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-sky-500 hover:bg-slate-800"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <span className="sr-only">Close menu</span>
-                <X className="h-6 w-6" aria-hidden="true" />
-              </button>
+                Initiate Link
+              </Link>
             </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-slate-800">
-                <div className="space-y-2 py-6">
-                  {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-slate-300 hover:bg-slate-800"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
-                <div className="py-6">
-                  <Link
-                    href="#contact"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-sky-500 hover:bg-slate-800"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Initiate Link
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      </div>
     </header>
   );
 }
