@@ -8,14 +8,16 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 const ThreeScene = dynamic(() => import("./ThreeScene"), {
   ssr: false,
-  loading: () => <div className="absolute inset-0 bg-slate-50/50" />,
+  loading: () => <div className="absolute inset-0 bg-slate-50/20" />,
 });
 
 export function Hero() {
   const container = useRef<HTMLDivElement>(null);
   const [showScene, setShowScene] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
     // Check if we should show the scene (Desktop only for performance)
     const isMobile = window.innerWidth < 768;
     if (isMobile) return;
@@ -77,9 +79,9 @@ export function Hero() {
           Engineering the Age of AI
         </div>
 
-        {/* LCP Element — Static to ensure fast render */}
+        {/* LCP Element — Solid color initially for instant LCP, gradient after hydration */}
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.92] mb-8 text-slate-900">
-          We Build <span className="text-gradient">Intelligent</span>
+          We Build <span className={isClient ? "text-gradient" : "text-[#0284c7]"}>Intelligent</span>
           <br />
           Digital Systems
         </h1>

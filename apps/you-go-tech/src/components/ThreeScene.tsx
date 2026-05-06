@@ -34,8 +34,8 @@ function SpinningCube() {
 export default function ThreeScene() {
   // Memoize counts to avoid unnecessary recalculations
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const starCount = isMobile ? 800 : 2000;
-  const sparkleCount = isMobile ? 30 : 80;
+  const starCount = isMobile ? 800 : 1000;
+  const sparkleCount = isMobile ? 30 : 60;
 
   return (
     <div className="absolute inset-0 z-0 h-full w-full pointer-events-none">
