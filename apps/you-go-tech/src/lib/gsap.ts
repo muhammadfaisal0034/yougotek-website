@@ -8,6 +8,15 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
+  
+  // Optimize ScrollTrigger performance
+  ScrollTrigger.config({
+    limitCallbacks: true,
+    ignoreMobileResize: true,
+  });
+  
+  // Prevent excessive refreshes during load
+  ScrollTrigger.clearScrollMemory("manual");
 }
 
 export { gsap, ScrollTrigger };

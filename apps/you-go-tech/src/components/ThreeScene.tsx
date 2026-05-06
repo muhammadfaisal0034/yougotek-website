@@ -28,8 +28,8 @@ export default function ThreeScene() {
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} />
         <SpinningCube />
-        <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
-        <Sparkles count={200} scale={10} size={1.5} speed={0.4} color="#0ea5e9" />
+        <Stars radius={100} depth={50} count={2000} factor={4} saturation={0} fade speed={1} />
+        <Sparkles count={100} scale={10} size={1.5} speed={0.4} color="#0ea5e9" />
       </Canvas>
     </div>
   );
