@@ -133,13 +133,24 @@ export function ContactSection() {
               </div>
 
               <div>
-                <label htmlFor="company" className="block text-sm font-medium text-slate-700 mb-2">Company</label>
+                <label htmlFor="company" className="block text-sm font-medium text-slate-700 mb-2">Company Name</label>
                 <input
                   id="company"
                   name="company"
                   type="text"
+                  required
                   placeholder="Your Company"
                   className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-[#0284c7] focus:outline-none focus:ring-1 focus:ring-[#0284c7] transition-colors shadow-sm"
+                />
+              </div>
+
+              {/* Honeypot field - hidden from humans */}
+              <div className="hidden" aria-hidden="true">
+                <input
+                  type="text"
+                  name="_honeypot"
+                  tabIndex={-1}
+                  autoComplete="off"
                 />
               </div>
 
@@ -150,7 +161,7 @@ export function ContactSection() {
                   name="message"
                   rows={4}
                   required
-                  placeholder="Tell us about your project and goals..."
+                  placeholder="Tell us about your project, goals, and timeline (minimum 20 characters)..."
                   className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-[#0284c7] focus:outline-none focus:ring-1 focus:ring-[#0284c7] transition-colors resize-none shadow-sm"
                 />
               </div>

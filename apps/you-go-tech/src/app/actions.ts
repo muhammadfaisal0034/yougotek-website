@@ -6,10 +6,11 @@ import { z } from "zod";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const contactFormSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
-  company: z.string().optional(),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  name: z.string().trim().min(2, "Name must be at least 2 characters").max(100),
+  email: z.string().trim().email("Invalid email address").toLowerCase(),
+  company: z.string().trim().min(2, "Company name is required").max(100),
+  message: z.string().trim().min(20, "Please provide at least 20 characters about your project").max(2000),
+  _honeypot: z.string().max(0).optional(), // Must be empty
 });
 
 export async function sendContactEmail(formData: FormData) {
@@ -18,18 +19,27 @@ export async function sendContactEmail(formData: FormData) {
     email: formData.get("email"),
     company: formData.get("company"),
     message: formData.get("message"),
+    _honeypot: formData.get("_honeypot"),
   });
 
   if (!validatedFields.success) {
     return { error: validatedFields.error.flatten().fieldErrors };
   }
 
+  // Honeypot check: If the hidden field has a value, it's a bot
+  if (validatedFields.data._honeypot) {
+    console.warn("Honeypot triggered - suspected bot submission.");
+    return { success: true }; // Silently fail for bots
+  }
+
   const { name, email, company, message } = validatedFields.data;
+  const recipient = process.env.CONTACT_EMAIL || "contact@yougotek.com";
+  const sender = process.env.FROM_EMAIL || "onboarding@resend.dev";
 
   try {
     const data = await resend.emails.send({
-      from: "You Go Tech <onboarding@resend.dev>",
-      to: ["contact@yougotek.com"],
+      from: `You Go Tech <${sender}>`,
+      to: [recipient],
       subject: `New Project Inquiry: ${name} ${company ? `from ${company}` : ""}`,
       replyTo: email,
       html: `
