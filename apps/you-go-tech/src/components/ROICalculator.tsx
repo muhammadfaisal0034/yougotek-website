@@ -12,10 +12,15 @@ export function ROICalculator() {
   // Logic: 1 = MVP, 2 = Standard, 3 = Enterprise, 4 = Ecosystem, 5 = Global
   const scopeNames = ["MVP", "Standard App", "Enterprise Platform", "AI Ecosystem", "Global Infrastructure"];
   
-  const tradCost = scope * 50000;
-  const youGoCost = scope * 15000;
-  const tradTime = scope * 2; // months
-  const youGoTime = scope * 1; // weeks
+  const tradCosts = [40000, 80000, 250000, 600000, 1500000];
+  const youGoCosts = [12000, 25000, 75000, 180000, 450000];
+  const tradTimes = [2, 4, 8, 15, 24]; // months
+  const youGoTimes = [1, 2, 4, 8, 12]; // weeks
+  
+  const tradCost = tradCosts[scope-1];
+  const youGoCost = youGoCosts[scope-1];
+  const tradTime = tradTimes[scope-1];
+  const youGoTime = youGoTimes[scope-1];
   
   const savings = tradCost - youGoCost;
 
