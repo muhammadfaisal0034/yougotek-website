@@ -46,7 +46,7 @@ export function GlobalFootprint() {
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#0284c7] transition-colors">KSA Operations</h3>
               <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-                Transforming businesses in Riyadh and across the Kingdom, aligning with Vision 2030 through cutting-edge enterprise software and automation.
+                Transforming businesses in Riyadh and across the Kingdom, aligning with Vision 2030 through autonomous systems and high-speed AI engineering.
               </p>
             </div>
           </div>
@@ -59,7 +59,7 @@ export function GlobalFootprint() {
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">Canada Operations</h3>
               <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-                Driving digital growth for North American small and medium businesses, offering robust tech stacks and strategic AI deployments.
+                Driving AI-assisted scaling for North American enterprises, offering high-precision engineering and strategic autonomous deployments.
               </p>
             </div>
           </div>

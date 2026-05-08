@@ -6,12 +6,18 @@ import { useGSAP } from "@gsap/react";
 import { Calculator } from "lucide-react";
 
 export function ROICalculator() {
-  const [hours, setHours] = useState(40);
+  const [scope, setScope] = useState(2);
   const container = useRef<HTMLDivElement>(null);
-  const hourlyRate = 75;
-  const yearlyCost = hours * hourlyRate * 52;
-  const automationRate = 0.7;
-  const yearlySavings = yearlyCost * automationRate;
+  
+  // Logic: 1 = MVP, 2 = Standard, 3 = Enterprise, 4 = Ecosystem, 5 = Global
+  const scopeNames = ["MVP", "Standard App", "Enterprise Platform", "AI Ecosystem", "Global Infrastructure"];
+  
+  const tradCost = scope * 50000;
+  const youGoCost = scope * 15000;
+  const tradTime = scope * 2; // months
+  const youGoTime = scope * 1; // weeks
+  
+  const savings = tradCost - youGoCost;
 
   useGSAP(() => {
     const timer = setTimeout(() => {
@@ -35,50 +41,53 @@ export function ROICalculator() {
         <div className="calc-content text-center mb-16">
           <div className="section-label mb-6 mx-auto">
             <Calculator className="h-3.5 w-3.5" />
-            ROI Calculator
+            Efficiency Simulator
           </div>
           <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6">
-            The Cost of <span className="text-gradient">Analog Operations</span>
+            Traditional Agency vs. <span className="text-gradient">You Go Tech</span>
           </h2>
           <p className="text-lg max-w-2xl mx-auto" style={{ color: "var(--text-secondary)" }}>
-            Calculate exactly how much energy you are burning on manual workflows. See what happens when intelligent systems take over.
+            Our AI-assisted engineering process eliminates the overhead of traditional development. Visualize the difference in speed, cost, and accuracy.
           </p>
         </div>
 
         <div className="calc-content grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Controls */}
           <div className="glass-card rounded-2xl p-8 md:p-10 bg-white">
-            <label htmlFor="hours-slider" className="text-lg font-semibold text-slate-900 mb-6 flex justify-between cursor-pointer">
-              <span>Manual Hours / Week</span>
-              <span className="text-[#0284c7] font-bold text-2xl" style={{ fontFamily: "var(--font-heading)" }}>{hours} hrs</span>
+            <label htmlFor="scope-slider" className="text-lg font-semibold text-slate-900 mb-6 flex justify-between cursor-pointer">
+              <span>Project Scope</span>
+              <span className="text-[#0284c7] font-bold text-2xl" style={{ fontFamily: "var(--font-heading)" }}>{scopeNames[scope-1]}</span>
             </label>
             <input
-              id="hours-slider"
+              id="scope-slider"
               type="range"
-              min="10"
-              max="200"
+              min="1"
+              max="5"
               step="1"
-              value={hours}
-              onInput={(e: any) => setHours(Number(e.target.value))}
-              onChange={(e: any) => setHours(Number(e.target.value))}
+              value={scope}
+              onInput={(e: any) => setScope(Number(e.target.value))}
+              onChange={(e: any) => setScope(Number(e.target.value))}
             />
             <div className="flex justify-between mt-3 text-sm" style={{ color: "var(--text-muted)" }}>
-              <span>10</span>
-              <span>200+</span>
+              <span>MVP</span>
+              <span>Global</span>
             </div>
 
-            <div className="mt-10 space-y-5">
-              <div className="flex justify-between items-center pb-4 border-b border-slate-100">
-                <span style={{ color: "var(--text-secondary)" }}>Average Hourly Rate</span>
-                <span className="text-slate-900 font-medium">${hourlyRate}/hr</span>
+            <div className="mt-10 space-y-6">
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Traditional Agency</div>
+                <div className="flex justify-between items-end">
+                  <div className="text-2xl font-bold text-slate-700">${tradCost.toLocaleString()}</div>
+                  <div className="text-sm font-medium text-slate-500">{tradTime} Months</div>
+                </div>
               </div>
-              <div className="flex justify-between items-center pb-4 border-b border-slate-100">
-                <span style={{ color: "var(--text-secondary)" }}>Current Yearly Cost</span>
-                <span className="text-slate-900 font-medium">${yearlyCost.toLocaleString()}</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span style={{ color: "var(--text-secondary)" }}>Automation Rate</span>
-                <span className="text-[#0284c7] font-medium">70%</span>
+              
+              <div className="p-4 rounded-xl bg-sky-50 border border-sky-100">
+                <div className="text-xs font-bold uppercase tracking-wider text-[#0284c7] mb-2">You Go Tech (AI-Assisted)</div>
+                <div className="flex justify-between items-end">
+                  <div className="text-2xl font-bold text-slate-900">${youGoCost.toLocaleString()}</div>
+                  <div className="text-sm font-bold text-[#0284c7]">{youGoTime} {youGoTime === 1 ? 'Week' : 'Weeks'}</div>
+                </div>
               </div>
             </div>
           </div>
@@ -89,17 +98,17 @@ export function ROICalculator() {
 
             <div className="relative z-10">
               <div className="text-sm tracking-widest uppercase font-bold mb-3" style={{ color: "var(--accent)" }}>
-                Potential Capital Unlocked
+                Capital Savings
               </div>
               <div className="text-5xl sm:text-7xl font-bold text-slate-900 tracking-tighter mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-                ${yearlySavings.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                ${savings.toLocaleString()}
               </div>
               <p className="leading-relaxed mb-8" style={{ color: "var(--text-secondary)" }}>
-                By deploying robust digital solutions and AI integrations, you can automate ~70% of these manual tasks. Redirect this energy into expanding your business.
+                By leveraging AI-assisted development, we achieve 100% accuracy with 10x speed. Redirect your capital from development overhead to market dominance.
               </p>
 
               <a href="#contact" className="btn-primary w-full justify-center">
-                Claim Your Strategy Call
+                Accelerate Your Project
               </a>
             </div>
           </div>
