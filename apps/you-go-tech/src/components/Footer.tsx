@@ -90,14 +90,24 @@ export function Footer() {
           {/* Locations */}
           <div>
             <h4 className="text-sm font-bold uppercase tracking-wider text-slate-900 mb-4">Locations</h4>
-            <div className="space-y-3">
-              <div className="flex items-start gap-2">
-                <Globe className="w-4 h-4 text-[#0284c7] mt-0.5 shrink-0" />
-                <span className="text-sm" style={{ color: "var(--text-secondary)" }}>Riyadh, KSA</span>
+            <div className="space-y-4">
+              <div className="flex flex-col gap-1">
+                <div className="flex items-start gap-2">
+                  <Globe className="w-4 h-4 text-[#0284c7] mt-0.5 shrink-0" />
+                  <span className="text-sm font-semibold text-slate-900">Riyadh, KSA</span>
+                </div>
+                <a href="tel:+966550237108" className="text-xs ml-6 hover:text-[#0284c7] transition-colors" style={{ color: "var(--text-secondary)" }}>
+                  +966 550237108
+                </a>
               </div>
-              <div className="flex items-start gap-2">
-                <Globe className="w-4 h-4 text-indigo-600 mt-0.5 shrink-0" />
-                <span className="text-sm" style={{ color: "var(--text-secondary)" }}>Toronto, Canada</span>
+              <div className="flex flex-col gap-1">
+                <div className="flex items-start gap-2">
+                  <Globe className="w-4 h-4 text-indigo-600 mt-0.5 shrink-0" />
+                  <span className="text-sm font-semibold text-slate-900">Toronto, Canada</span>
+                </div>
+                <a href="tel:+16473026731" className="text-xs ml-6 hover:text-[#0284c7] transition-colors" style={{ color: "var(--text-secondary)" }}>
+                  +1 (647) 302-6731
+                </a>
               </div>
             </div>
           </div>

@@ -82,11 +82,18 @@ export function ContactSection() {
                 <div className="p-3 rounded-xl bg-indigo-50 text-indigo-600 border border-indigo-100 shrink-0">
                   <Phone className="w-5 h-5" />
                 </div>
-                <div>
+                <div className="space-y-1">
                   <div className="text-sm font-semibold uppercase tracking-wider mb-1" style={{ color: "var(--text-muted)" }}>Phone</div>
-                  <a href="tel:+1234567890" className="text-slate-900 hover:text-indigo-600 transition-colors font-medium">
-                    +1 (234) 567-890
-                  </a>
+                  <div className="flex flex-col gap-1">
+                    <a href="tel:+16473026731" className="text-slate-900 hover:text-indigo-600 transition-colors font-medium flex items-center gap-2">
+                      <span className="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 font-bold uppercase">CA</span>
+                      +1 (647) 302-6731
+                    </a>
+                    <a href="tel:+966550237108" className="text-slate-900 hover:text-indigo-600 transition-colors font-medium flex items-center gap-2">
+                      <span className="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 font-bold uppercase">KSA</span>
+                      +966 550237108
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
