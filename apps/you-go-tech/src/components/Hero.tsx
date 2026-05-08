@@ -81,9 +81,9 @@ export function Hero() {
 
         {/* LCP Element — Solid color initially for instant LCP, gradient after hydration */}
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.92] mb-8 text-slate-900">
-          We Build <span className={isClient ? "text-gradient" : "text-[#0284c7]"}>Autonomous</span>
+          We Engineer <span className={isClient ? "text-gradient" : "text-[#0284c7]"}>Autonomous</span>
           <br />
-          Digital Systems
+          AI-First Systems
         </h1>
 
         <p className="hero-desc text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto mb-10 opacity-0" style={{ color: "var(--text-secondary)" }}>
