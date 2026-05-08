@@ -2,6 +2,7 @@ import { Hero } from "@/components/Hero";
 import { AboutPreview } from "@/components/AboutPreview";
 import { Services } from "@/components/Services";
 import { ROICalculator } from "@/components/ROICalculator";
+import { Testimonials } from "@/components/Testimonials";
 import { GlobalFootprint } from "@/components/GlobalFootprint";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
@@ -13,6 +14,7 @@ export default function Home() {
       <AboutPreview />
       <Services />
       <ROICalculator />
+      <Testimonials />
       <GlobalFootprint />
       <ContactSection />
       <Footer />
