@@ -1,4 +1,5 @@
 "use client";
+// Forced deployment trigger to update Efficiency Simulator logic.
 
 import { useState, useRef } from "react";
 import { gsap } from "@/lib/gsap";
