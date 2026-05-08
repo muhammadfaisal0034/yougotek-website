@@ -6,6 +6,7 @@
 - **Agentic Workflows**: The service pillar focused on designing and deploying autonomous AI agents that handle complex business logic, reducing operational costs and human error.
 - **AI-First Systems**: Custom enterprise software built from the ground up to leverage artificial intelligence, rather than just "adding AI" as a feature.
 - **Efficiency Simulator**: An interactive tool (previously ROI Calculator) that allows prospects to visualize the cost and time savings of the You Go Tech AI-assisted approach vs. traditional software development.
+- **Lead Notification Engine**: The server-side system responsible for validating contact form submissions and routing project inquiries to the internal contact@yougotek.com inbox via Resend.
 - **Narrative Funnel**: The structure of the landing page, designed to guide a user from traditional development friction (high cost, slow speed) through the discovery of AI-assisted leverage, and finally to a strategy call.
 
 ## Core Concepts

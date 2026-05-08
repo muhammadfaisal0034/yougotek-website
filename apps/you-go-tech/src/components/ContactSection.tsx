@@ -4,9 +4,11 @@ import { useState, useRef } from "react";
 import { Mail, Phone, Send, MapPin } from "lucide-react";
 import { gsap } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
+import { sendContactEmail } from "@/app/actions";
 
 export function ContactSection() {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
@@ -22,10 +24,20 @@ export function ContactSection() {
     return () => clearTimeout(timer);
   }, { scope: container });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("sending");
-    setTimeout(() => setStatus("sent"), 1500);
+    setErrorMsg(null);
+    
+    const formData = new FormData(e.currentTarget);
+    const result = await sendContactEmail(formData);
+    
+    if (result.success) {
+      setStatus("sent");
+    } else {
+      setStatus("error");
+      setErrorMsg(typeof result.error === "string" ? result.error : "Validation failed. Please check your inputs.");
+    }
   };
 
   return (
@@ -100,6 +112,7 @@ export function ContactSection() {
                   <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">Full Name</label>
                   <input
                     id="name"
+                    name="name"
                     type="text"
                     required
                     placeholder="John Doe"
@@ -110,6 +123,7 @@ export function ContactSection() {
                   <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">Email Address</label>
                   <input
                     id="email"
+                    name="email"
                     type="email"
                     required
                     placeholder="john@company.com"
@@ -122,6 +136,7 @@ export function ContactSection() {
                 <label htmlFor="company" className="block text-sm font-medium text-slate-700 mb-2">Company</label>
                 <input
                   id="company"
+                  name="company"
                   type="text"
                   placeholder="Your Company"
                   className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-[#0284c7] focus:outline-none focus:ring-1 focus:ring-[#0284c7] transition-colors shadow-sm"
@@ -132,12 +147,19 @@ export function ContactSection() {
                 <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">Project Details</label>
                 <textarea
                   id="message"
+                  name="message"
                   rows={4}
                   required
                   placeholder="Tell us about your project and goals..."
                   className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-[#0284c7] focus:outline-none focus:ring-1 focus:ring-[#0284c7] transition-colors resize-none shadow-sm"
                 />
               </div>
+
+              {status === "error" && (
+                <div className="p-4 rounded-xl bg-red-50 border border-red-100 text-red-600 text-sm">
+                  {errorMsg}
+                </div>
+              )}
 
               <button
                 type="submit"
@@ -152,6 +174,7 @@ export function ContactSection() {
                 )}
                 {status === "sending" && "Sending..."}
                 {status === "sent" && "✓ Message Sent!"}
+                {status === "error" && "Try Again"}
               </button>
             </form>
           </div>
