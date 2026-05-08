@@ -58,8 +58,8 @@ export function ContactSection() {
                 </div>
                 <div>
                   <div className="text-sm font-semibold uppercase tracking-wider mb-1" style={{ color: "var(--text-muted)" }}>Email</div>
-                  <a href="mailto:contact@yougotech.com" className="text-slate-900 hover:text-[#0284c7] transition-colors font-medium">
-                    contact@yougotech.com
+                  <a href="mailto:contact@yougotek.com" className="text-slate-900 hover:text-[#0284c7] transition-colors font-medium">
+                    contact@yougotek.com
                   </a>
                 </div>
               </div>

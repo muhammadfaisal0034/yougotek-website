@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "You Go Tech - Engineering the Age of AI",
     description: "Enterprise-grade AI automation and high-performance digital infrastructure.",
-    url: "https://yougotech.com",
+    url: "https://yougotek.com",
     siteName: "You Go Tech",
     locale: "en_US",
     type: "website",

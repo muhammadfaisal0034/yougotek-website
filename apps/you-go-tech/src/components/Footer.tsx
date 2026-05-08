@@ -28,8 +28,8 @@ export function Footer() {
                 Start a Project
                 <ArrowUpRight className="h-4 w-4" />
               </a>
-              <a href="mailto:contact@yougotech.com" className="btn-secondary text-base px-8 py-4">
-                contact@yougotech.com
+              <a href="mailto:contact@yougotek.com" className="btn-secondary text-base px-8 py-4">
+                contact@yougotek.com
               </a>
             </div>
           </div>
