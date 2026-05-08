@@ -148,7 +148,7 @@ export function ContactSection() {
               <div className="hidden" aria-hidden="true">
                 <input
                   type="text"
-                  name="_honeypot"
+                  name="_confirm_email_field"
                   tabIndex={-1}
                   autoComplete="off"
                 />

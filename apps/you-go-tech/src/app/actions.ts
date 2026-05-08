@@ -3,33 +3,40 @@
 import { Resend } from "resend";
 import { z } from "zod";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const contactFormSchema = z.object({
   name: z.string().trim().min(2, "Name must be at least 2 characters").max(100),
   email: z.string().trim().email("Invalid email address").toLowerCase(),
   company: z.string().trim().min(2, "Company name is required").max(100),
   message: z.string().trim().min(20, "Please provide at least 20 characters about your project").max(2000),
-  _honeypot: z.string().max(0).optional(), // Must be empty
+  _confirm_email_field: z.string().max(0).optional(), // Obscured honeypot
 });
 
 export async function sendContactEmail(formData: FormData) {
+  if (!process.env.RESEND_API_KEY) {
+    console.error("RESEND_API_KEY is not configured in environment variables.");
+    return { error: "Email service is currently misconfigured. Please contact us directly at contact@yougotek.com" };
+  }
+
+  const resend = new Resend(process.env.RESEND_API_KEY);
+  console.log("Contact form submission received...");
+  
   const validatedFields = contactFormSchema.safeParse({
     name: formData.get("name"),
     email: formData.get("email"),
     company: formData.get("company"),
     message: formData.get("message"),
-    _honeypot: formData.get("_honeypot"),
+    _confirm_email_field: formData.get("_confirm_email_field"),
   });
 
   if (!validatedFields.success) {
+    console.error("Validation failed:", validatedFields.error.flatten().fieldErrors);
     return { error: validatedFields.error.flatten().fieldErrors };
   }
 
-  // Honeypot check: If the hidden field has a value, it's a bot
-  if (validatedFields.data._honeypot) {
+  // Honeypot check
+  if (validatedFields.data._confirm_email_field) {
     console.warn("Honeypot triggered - suspected bot submission.");
-    return { success: true }; // Silently fail for bots
+    return { success: true };
   }
 
   const { name, email, company, message } = validatedFields.data;
@@ -37,7 +44,10 @@ export async function sendContactEmail(formData: FormData) {
   const sender = process.env.FROM_EMAIL || "onboarding@resend.dev";
 
   try {
-    const data = await resend.emails.send({
+    console.log(`Attempting to send email to ${recipient}...`);
+    
+    // Add a timeout to the Resend call
+    const emailPromise = resend.emails.send({
       from: `You Go Tech <${sender}>`,
       to: [recipient],
       subject: `New Project Inquiry: ${name} ${company ? `from ${company}` : ""}`,
@@ -72,9 +82,16 @@ export async function sendContactEmail(formData: FormData) {
       `,
     });
 
+    const timeoutPromise = new Promise((_, reject) => 
+      setTimeout(() => reject(new Error("Email service timed out")), 10000)
+    );
+
+    const data = await Promise.race([emailPromise, timeoutPromise]);
+    console.log("Email sent successfully!");
+
     return { success: true, data };
   } catch (error) {
     console.error("Email Error:", error);
-    return { error: "Failed to send message. Please try again later." };
+    return { error: error instanceof Error ? error.message : "Failed to send message. Please try again later." };
   }
 }
